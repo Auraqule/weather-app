@@ -1,9 +1,7 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import axios from "axios";
-
-const API_KEY = "5b4e269c24e6a9d8b4cbad546ac926b5";
 
 function App() {
   const [degrees, setDegrees] = useState(null);
@@ -14,8 +12,7 @@ function App() {
   const [countryInitials, setCountryInitials] = useState("");
   const [icon, setIcon] = useState("");
   const [description, setDescription] = useState("");
-  const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`;
-
+  const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}&units=metric`;
   const fetchWeatherInfos = async () => {
     const response = await axios.get(API_URL);
     const data = await response.data;
